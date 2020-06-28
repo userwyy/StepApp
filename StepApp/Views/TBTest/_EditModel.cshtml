@@ -1,0 +1,103 @@
+﻿@model TestModel
+<!--  编辑模态框（optionModal） -->
+<div class="modal fade" id="optionModal" tabindex="-1" role="dialog" aria-labelledby="findModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="form-group" role="form" id="optionForm" name="optionForm" method="post" asp-controller="TBTest" asp-action="Add">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        新增/编辑
+                    </h4>
+                </div>
+                <!-- 模态框（optionModal）内容（需要增加修改的项目） -->
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <!-- 第一行数据--用于存放ID--隐藏域 -->
+                        <div class="row" style="display:none">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" type="button">ID</button>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="请输入状态" id="test_type" autocomplete="off" disabled="disabled" >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" type="button">ID</button>
+                                    </span>
+                                    <input type="number" class="form-control" id="test_id" autocomplete="off" disabled="disabled" asp-for="test_id">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 第二行数据 -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" type="button">测试名称</button>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="请输入测试名称" id="test_name" autocomplete="off" asp-for="test_name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" type="button">测试内容</button>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="请输入测试内容" id="test_value" asp-for="test_value">
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <!-- 第三行数据 -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" type="button">测试数值</button>
+                                    </span>
+                                    <input type="number" class="form-control" placeholder="请输入测试数值" id="test_num" asp-for="test_num">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" type="button">测试日期</button>
+                                    </span>
+                                    <input type="text" class="form-control date" placeholder="请输入测试日期" id="test_date" asp-for="test_date">
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <!-- 第四行数据 -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" type="button">测试备注</button>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="请输入备注" id="test_remark" asp-for="test_remark">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 模态框（optionModal）按钮（保存、取消） -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary glyphicon glyphicon-ok" id="btnSave">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-primary glyphicon glyphicon-share-alt" data-dismiss="modal">
+                        取消
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+<!-- /编辑模态框（optionModal） -->

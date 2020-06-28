@@ -1,0 +1,151 @@
+﻿<!--  查询模态框（findModal） -->
+<div class="modal fade" id="findModal" tabindex="-1" role="dialog" aria-labelledby="findModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form role="form" id="queryForm" name="queryForm" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        查询
+                    </h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="button">
+                                <span class="glyphicon glyphicon-asterisk"></span>
+                                查询项目
+                            </button>
+                        </span>
+                        @*<select class="form-control" id="selectItem">
+                                <option value="dicName,string"> 字典名称 </option>
+                                <option value="dicType,string"> 字典类型 </option>
+                                <option value="dicInfo,string"> 字典信息 </option>
+                                <option value="dicDate,date"> 字典日期 </option>
+                                <option value="dicFlag,number"> 停用标识 </option>
+                            </select>*@
+                        <select class="form-control" id="selectItem">
+                            @foreach (TBInfoModel item in ViewBag.SelectItemList as IEnumerable<TBInfoModel>)
+                            {
+                                <option value="@item.fdName,@item.fdType">@item.fdInfo</option>
+                            }
+                        </select>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="button">
+                                <span class="glyphicon glyphicon-asterisk"></span>
+                                查询条件
+                            </button>
+                        </span>
+                        <select class="form-control" id="selectCondition">
+                            <option value="like"> 包含 </option>
+                            <option value="="> 等于 </option>
+                            <option value=">"> 大于 </option>
+                            <option value="<"> 小于 </option>
+                            <option value=">="> 大于等于 </option>
+                            <option value="<="> 小于等于 </option>
+                            <option value="<>"> 不等于 </option>
+                            <option value="not like"> 不包含 </option>
+                        </select>
+                    </div>
+                    <br />
+
+                    <!-- 查询文本项目 -->
+                    <div class="input-group" style="display:none;" id="divString">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="button">
+                                <span class="glyphicon glyphicon-asterisk"></span>
+                                文本条件
+                            </button>
+                        </span>
+                        <input type="text" class="form-control" id="txtString" name="txtString" placeholder="请输入文本内容">
+                        <br />
+                    </div>
+
+                    <!-- 查询数字项目 -->
+                    <div class="input-group" style="display:none;" id="divNumber">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="button">
+                                <span class="glyphicon glyphicon-asterisk"></span>
+                                数字条件
+                            </button>
+                        </span>
+                        <input type="number" class="form-control" placeholder="请输入数字内容" id="txtNumber">
+                        <br />
+                    </div>
+
+                    <!-- 查询日期项目 -->
+                    <div class="input-group" id="divDate">
+                        <!--  style="display:none;" -->
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                                选择日期
+                            </button>
+                            <ul class="dropdown-menu" id="ulDate">
+                                <li><a href="#">今天</a></li>
+                                <li><a href="#">昨天</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">本月</a></li>
+                                <li><a href="#">上月</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">本周</a></li>
+                                <li><a href="#">上周</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">今年</a></li>
+                                <li><a href="#">去年</a></li>
+                            </ul>
+                        </div><!-- /btn-group -->
+                        <div class="input-daterange input-group date" id="datepicker1">
+
+                            <input type="text" class="form-control datepicker-dropdown" name="start" id="startDate" placeholder="选择起始日期" autocomplete="off" />
+                            <span class="input-group-addon"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 至 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                            <!--<span class="input-group-addon"> ---- 至 ---- </span>-->
+                            <input type="text" class="form-control date" name="end" id="endDate" placeholder="选择截止日期" autocomplete="off" />
+                            <!-- input-daterange -->
+                        </div>
+                        <!-- ===================================================================== -->
+                    </div>
+                    <br />
+                    <!-- 组合条件按钮 -->
+                    <div class="form-group">
+                        <button type="button" class="btn btn-warning" id="btnAnd">
+                            并且
+                        </button>
+                        <button type="button" class="btn btn-warning" id="btnOr">
+                            或者
+                        </button>
+                        <button type="button" class="btn btn-warning" id="btnClear">
+                            清除查询
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">条件列表</label>
+                        <textarea class="form-control" rows="2" id="sqlList1" style="resize:none" readonly></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control" rows="2" id="sqlList2" style="resize:none;display:none;" readonly></textarea>
+                    </div>
+
+                </div>
+                <!-- 模态框（findModal）按钮（查询、取消） -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary glyphicon glyphicon-ok" id="btnFind">
+                        查询
+                    </button>
+                    <button type="button" class="btn btn-primary glyphicon glyphicon-share-alt" id="btnCancel" data-dismiss="modal">
+                        取消
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+<!-- /查询模态框（findModal） -->

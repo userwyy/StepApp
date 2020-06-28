@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "TestIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+
+}
+<!-- ============================ 表格 =============================== -->
+
+<div class="panel-body table-responsive">
+
+    <div class="query-div" id="toolbar">
+        <form class="form-inline" role="form" id="query_form">
+            <!--  table按钮-查询  -->
+            <div class="form-group query-form-group">
+                <button type="button" class="btn btn-primary" id="with_query" data-toggle="modal" data-target="#findModal">
+                    <span class="glyphicon glyphicon-search"></span>
+                    查询
+                </button>
+            </div>
+            <!--  table按钮-增加  -->
+            <div class="form-group query-form-group">
+                <button type="button" class="btn btn-info" id="with_add" data-toggle="modal" @*data-target="#optionModal"*@>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    增加
+                </button>
+            </div>
+            <!--  table按钮-编辑  -->
+            <div class="form-group query-form-group">
+                <button type="button" class="btn btn-info" id="with_edit" data-toggle="modal">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    编辑
+                </button>
+            </div>
+            <!--  table按钮-删除  -->
+            <div class="form-group query-form-group">
+                <button type="button" class="btn btn-danger" id="with_delete">
+                    <span class="glyphicon glyphicon-minus"></span>
+                    删除
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <table class="table table-striped table-bordered table-hover table-condensed" id="tbData"></table>
+</div>
+
+@await Html.PartialAsync("_EditModel")
+
+<!-- =========================== 自定义脚本 ============================ -->
+@section scripts{
+    <script src="~/Views/TBTest/Index.js"></script>
+}
+<!-- =========================== /自定义脚本 ============================ -->
+

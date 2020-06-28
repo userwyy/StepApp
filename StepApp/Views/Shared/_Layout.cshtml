@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <!-- ======================================= 引入样式 ======================================= -->
+    <!-- 引入 Bootstrap v3.3.7 样式 -->
+    <link href="~/MasterPage/css/bootstrap.css" rel="stylesheet" />
+    <!-- 引入 Bootstrap-table v1.15.4 样式 -->
+    <link href="~/MasterPage/css/bootstrap-table.css" rel="stylesheet" />
+    <!-- 引入 Bootstrap-datepicker v1.9.0 样式 -->
+    <link href="~/MasterPage/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <!-- ====================================== /引入样式 ======================================= -->
+    <!-- ======================================= 脚本 ========================================= -->
+    <!-- 引入 jquery v3.4.1 脚本 -->
+    <script src="~/MasterPage/js/jquery.js"></script>
+    <!-- 引入 bootstrap v3.3.7 脚本 -->
+    <script src="~/MasterPage/js/bootstrap.js"></script>
+    <!-- 引入 bootstrap-table v1.15.4 脚本 -->
+    <script src="~/MasterPage/js/bootstrap-table.js"></script>
+    <!-- 引入 bootstrap-table v1.15.4 中文语言包 -->
+    <script src="~/MasterPage/js/bootstrap-table-zh-CN.js"></script>
+    <!-- 引入 Bootstrap-datepicker v1.9.0 脚本 -->
+    <script src="~/MasterPage/js/bootstrap-datepicker.js"></script>
+    <!-- 引入 Bootstrap-datepicker v1.9.0 中文语言包 -->
+    <script src="~/MasterPage/js/bootstrap-datepicker.zh-CN.min.js"></script>
+    <!-- ====================================== /脚本 ========================================= -->
+    @RenderSection("styles", required: false)
+
+</head>
+<body>
+    <div @*class="container"*@>
+        @RenderBody()
+    </div>
+    
+    <!-- 引入自制脚本 -->
+    <script src="~/Views/Shared/_Layout.js"></script>
+    
+    @await Html.PartialAsync("_FindModel")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
